@@ -1,0 +1,15 @@
+*.class
+
+# Package Files #
+*.war
+*.ear
+*.zip
+*.iml
+.idea/
+target/
+#eclipse File#
+.settings/
+.classpath
+.project
+bin/
+temp/

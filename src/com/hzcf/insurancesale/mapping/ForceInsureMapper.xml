@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.insurancesale.dao.ForceInsureMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.insurancesale.model.ForceInsure" >
+    <id column="forceInsureId" property="forceinsureid" jdbcType="BIGINT" />
+    <result column="carInsurePolicyId" property="carinsurepolicyid" jdbcType="BIGINT" />
+    <result column="policyNo" property="policyno" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="premium" property="premium" jdbcType="DECIMAL" />
+    <result column="discountRate" property="discountrate" jdbcType="DECIMAL" />
+    <result column="lateFee" property="latefee" jdbcType="DECIMAL" />
+    <result column="taxFee" property="taxfee" jdbcType="DECIMAL" />
+    <result column="startDate" property="startdate" jdbcType="TIMESTAMP" />
+    <result column="endDate" property="enddate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      forceInsureId, carInsurePolicyId, policyNo, amount, premium, discountRate, lateFee, 
+      taxFee, startDate, endDate
+    </if>
+    <if test="fields != null and fields != ''" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    forceInsureId,carInsurePolicyId,policyNo,amount,premium,discountRate,lateFee,taxFee,startDate,endDate
+    from t_force_insure
+    where forceInsureId = #{forceinsureid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_force_insure
+    where forceInsureId = #{forceinsureid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.insurancesale.model.ForceInsure" >
+    insert into t_force_insure (forceInsureId, carInsurePolicyId, policyNo, 
+      amount, premium, discountRate, 
+      lateFee, taxFee, startDate, 
+      endDate)
+    values (#{forceinsureid,jdbcType=BIGINT}, #{carinsurepolicyid,jdbcType=BIGINT}, #{policyno,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{premium,jdbcType=DECIMAL}, #{discountrate,jdbcType=DECIMAL}, 
+      #{latefee,jdbcType=DECIMAL}, #{taxfee,jdbcType=DECIMAL}, #{startdate,jdbcType=TIMESTAMP}, 
+      #{enddate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.insurancesale.model.ForceInsure" >
+    insert into t_force_insure
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="forceinsureid != null" >
+        forceInsureId,
+      </if>
+      <if test="carinsurepolicyid != null" >
+        carInsurePolicyId,
+      </if>
+      <if test="policyno != null" >
+        policyNo,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="premium != null" >
+        premium,
+      </if>
+      <if test="discountrate != null" >
+        discountRate,
+      </if>
+      <if test="latefee != null" >
+        lateFee,
+      </if>
+      <if test="taxfee != null" >
+        taxFee,
+      </if>
+      <if test="startdate != null" >
+        startDate,
+      </if>
+      <if test="enddate != null" >
+        endDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="forceinsureid != null" >
+        #{forceinsureid,jdbcType=BIGINT},
+      </if>
+      <if test="carinsurepolicyid != null" >
+        #{carinsurepolicyid,jdbcType=BIGINT},
+      </if>
+      <if test="policyno != null" >
+        #{policyno,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="premium != null" >
+        #{premium,jdbcType=DECIMAL},
+      </if>
+      <if test="discountrate != null" >
+        #{discountrate,jdbcType=DECIMAL},
+      </if>
+      <if test="latefee != null" >
+        #{latefee,jdbcType=DECIMAL},
+      </if>
+      <if test="taxfee != null" >
+        #{taxfee,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null" >
+        #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.insurancesale.model.ForceInsure" >
+    update t_force_insure
+    <set >
+      <if test="carinsurepolicyid != null" >
+        carInsurePolicyId = #{carinsurepolicyid,jdbcType=BIGINT},
+      </if>
+      <if test="policyno != null" >
+        policyNo = #{policyno,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="premium != null" >
+        premium = #{premium,jdbcType=DECIMAL},
+      </if>
+      <if test="discountrate != null" >
+        discountRate = #{discountrate,jdbcType=DECIMAL},
+      </if>
+      <if test="latefee != null" >
+        lateFee = #{latefee,jdbcType=DECIMAL},
+      </if>
+      <if test="taxfee != null" >
+        taxFee = #{taxfee,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null" >
+        startDate = #{startdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enddate != null" >
+        endDate = #{enddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where forceInsureId = #{forceinsureid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.insurancesale.model.ForceInsure" >
+    update t_force_insure
+    set carInsurePolicyId = #{carinsurepolicyid,jdbcType=BIGINT},
+      policyNo = #{policyno,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      premium = #{premium,jdbcType=DECIMAL},
+      discountRate = #{discountrate,jdbcType=DECIMAL},
+      lateFee = #{latefee,jdbcType=DECIMAL},
+      taxFee = #{taxfee,jdbcType=DECIMAL},
+      startDate = #{startdate,jdbcType=TIMESTAMP},
+      endDate = #{enddate,jdbcType=TIMESTAMP}
+    where forceInsureId = #{forceinsureid,jdbcType=BIGINT}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hzcf.insurancesale.model.ForceInsure" >
+     select * from t_force_insure
+  </select>
+</mapper>

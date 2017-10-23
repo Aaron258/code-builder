@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.insurancesale.dao.CarMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.insurancesale.model.Car" >
+    <id column="carId" property="carid" jdbcType="BIGINT" />
+    <result column="carInsurePolicyId" property="carinsurepolicyid" jdbcType="BIGINT" />
+    <result column="carLicenseNo" property="carlicenseno" jdbcType="VARCHAR" />
+    <result column="vehicleName" property="vehiclename" jdbcType="VARCHAR" />
+    <result column="carProperty" property="carproperty" jdbcType="VARCHAR" />
+    <result column="owner" property="owner" jdbcType="VARCHAR" />
+    <result column="idcardNo" property="idcardno" jdbcType="VARCHAR" />
+    <result column="idcardType" property="idcardtype" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      carId, carInsurePolicyId, carLicenseNo, vehicleName, carProperty, owner, idcardNo, 
+      idcardType, phone
+    </if>
+    <if test="fields != null and fields != ''" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    carId,carInsurePolicyId,carLicenseNo,vehicleName,carProperty,owner,idcardNo,idcardType,phone
+    from t_car
+    where carId = #{carid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_car
+    where carId = #{carid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.insurancesale.model.Car" >
+    insert into t_car (carId, carInsurePolicyId, carLicenseNo, 
+      vehicleName, carProperty, owner, 
+      idcardNo, idcardType, phone
+      )
+    values (#{carid,jdbcType=BIGINT}, #{carinsurepolicyid,jdbcType=BIGINT}, #{carlicenseno,jdbcType=VARCHAR}, 
+      #{vehiclename,jdbcType=VARCHAR}, #{carproperty,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, 
+      #{idcardno,jdbcType=VARCHAR}, #{idcardtype,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.insurancesale.model.Car" >
+    insert into t_car
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="carid != null" >
+        carId,
+      </if>
+      <if test="carinsurepolicyid != null" >
+        carInsurePolicyId,
+      </if>
+      <if test="carlicenseno != null" >
+        carLicenseNo,
+      </if>
+      <if test="vehiclename != null" >
+        vehicleName,
+      </if>
+      <if test="carproperty != null" >
+        carProperty,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+      <if test="idcardno != null" >
+        idcardNo,
+      </if>
+      <if test="idcardtype != null" >
+        idcardType,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="carid != null" >
+        #{carid,jdbcType=BIGINT},
+      </if>
+      <if test="carinsurepolicyid != null" >
+        #{carinsurepolicyid,jdbcType=BIGINT},
+      </if>
+      <if test="carlicenseno != null" >
+        #{carlicenseno,jdbcType=VARCHAR},
+      </if>
+      <if test="vehiclename != null" >
+        #{vehiclename,jdbcType=VARCHAR},
+      </if>
+      <if test="carproperty != null" >
+        #{carproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardno != null" >
+        #{idcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardtype != null" >
+        #{idcardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.insurancesale.model.Car" >
+    update t_car
+    <set >
+      <if test="carinsurepolicyid != null" >
+        carInsurePolicyId = #{carinsurepolicyid,jdbcType=BIGINT},
+      </if>
+      <if test="carlicenseno != null" >
+        carLicenseNo = #{carlicenseno,jdbcType=VARCHAR},
+      </if>
+      <if test="vehiclename != null" >
+        vehicleName = #{vehiclename,jdbcType=VARCHAR},
+      </if>
+      <if test="carproperty != null" >
+        carProperty = #{carproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardno != null" >
+        idcardNo = #{idcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardtype != null" >
+        idcardType = #{idcardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where carId = #{carid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.insurancesale.model.Car" >
+    update t_car
+    set carInsurePolicyId = #{carinsurepolicyid,jdbcType=BIGINT},
+      carLicenseNo = #{carlicenseno,jdbcType=VARCHAR},
+      vehicleName = #{vehiclename,jdbcType=VARCHAR},
+      carProperty = #{carproperty,jdbcType=VARCHAR},
+      owner = #{owner,jdbcType=VARCHAR},
+      idcardNo = #{idcardno,jdbcType=VARCHAR},
+      idcardType = #{idcardtype,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where carId = #{carid,jdbcType=BIGINT}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hzcf.insurancesale.model.Car" >
+     select * from t_car
+  </select>
+</mapper>

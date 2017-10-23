@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.insurancesale.dao.InsureTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.insurancesale.model.InsureType" >
+    <id column="insureTypeId" property="insuretypeid" jdbcType="BIGINT" />
+    <result column="businessInsureId" property="businessinsureid" jdbcType="BIGINT" />
+    <result column="riskCode" property="riskcode" jdbcType="VARCHAR" />
+    <result column="riskName" property="riskname" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="premium" property="premium" jdbcType="DECIMAL" />
+    <result column="notDeductible" property="notdeductible" jdbcType="VARCHAR" />
+    <result column="ncfPremium" property="ncfpremium" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      insureTypeId, businessInsureId, riskCode, riskName, amount, premium, notDeductible, 
+      ncfPremium
+    </if>
+    <if test="fields != null and fields != ''" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    insureTypeId,businessInsureId,riskCode,riskName,amount,premium,notDeductible,ncfPremium
+    from t_insure_type
+    where insureTypeId = #{insuretypeid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_insure_type
+    where insureTypeId = #{insuretypeid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.insurancesale.model.InsureType" >
+    insert into t_insure_type (insureTypeId, businessInsureId, riskCode, 
+      riskName, amount, premium, 
+      notDeductible, ncfPremium)
+    values (#{insuretypeid,jdbcType=BIGINT}, #{businessinsureid,jdbcType=BIGINT}, #{riskcode,jdbcType=VARCHAR}, 
+      #{riskname,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{premium,jdbcType=DECIMAL}, 
+      #{notdeductible,jdbcType=VARCHAR}, #{ncfpremium,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.insurancesale.model.InsureType" >
+    insert into t_insure_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="insuretypeid != null" >
+        insureTypeId,
+      </if>
+      <if test="businessinsureid != null" >
+        businessInsureId,
+      </if>
+      <if test="riskcode != null" >
+        riskCode,
+      </if>
+      <if test="riskname != null" >
+        riskName,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="premium != null" >
+        premium,
+      </if>
+      <if test="notdeductible != null" >
+        notDeductible,
+      </if>
+      <if test="ncfpremium != null" >
+        ncfPremium,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="insuretypeid != null" >
+        #{insuretypeid,jdbcType=BIGINT},
+      </if>
+      <if test="businessinsureid != null" >
+        #{businessinsureid,jdbcType=BIGINT},
+      </if>
+      <if test="riskcode != null" >
+        #{riskcode,jdbcType=VARCHAR},
+      </if>
+      <if test="riskname != null" >
+        #{riskname,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="premium != null" >
+        #{premium,jdbcType=DECIMAL},
+      </if>
+      <if test="notdeductible != null" >
+        #{notdeductible,jdbcType=VARCHAR},
+      </if>
+      <if test="ncfpremium != null" >
+        #{ncfpremium,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.insurancesale.model.InsureType" >
+    update t_insure_type
+    <set >
+      <if test="businessinsureid != null" >
+        businessInsureId = #{businessinsureid,jdbcType=BIGINT},
+      </if>
+      <if test="riskcode != null" >
+        riskCode = #{riskcode,jdbcType=VARCHAR},
+      </if>
+      <if test="riskname != null" >
+        riskName = #{riskname,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="premium != null" >
+        premium = #{premium,jdbcType=DECIMAL},
+      </if>
+      <if test="notdeductible != null" >
+        notDeductible = #{notdeductible,jdbcType=VARCHAR},
+      </if>
+      <if test="ncfpremium != null" >
+        ncfPremium = #{ncfpremium,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where insureTypeId = #{insuretypeid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.insurancesale.model.InsureType" >
+    update t_insure_type
+    set businessInsureId = #{businessinsureid,jdbcType=BIGINT},
+      riskCode = #{riskcode,jdbcType=VARCHAR},
+      riskName = #{riskname,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      premium = #{premium,jdbcType=DECIMAL},
+      notDeductible = #{notdeductible,jdbcType=VARCHAR},
+      ncfPremium = #{ncfpremium,jdbcType=DECIMAL}
+    where insureTypeId = #{insuretypeid,jdbcType=BIGINT}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hzcf.insurancesale.model.InsureType" >
+     select * from t_insure_type
+  </select>
+</mapper>

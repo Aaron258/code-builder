@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzcf.insurancesale.dao.CarInsurePolicyMapper" >
+  <resultMap id="BaseResultMap" type="com.hzcf.insurancesale.model.CarInsurePolicy" >
+    <id column="carInsurePolicyId" property="carinsurepolicyid" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="pay_amount" property="payAmount" jdbcType="DECIMAL" />
+    <result column="promotion_rate" property="promotionRate" jdbcType="DECIMAL" />
+    <result column="promotion_expenses" property="promotionExpenses" jdbcType="DECIMAL" />
+    <result column="insureAreaCode" property="insureareacode" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="taskId" property="taskid" jdbcType="BIGINT" />
+    <result column="prvId" property="prvid" jdbcType="VARCHAR" />
+    <result column="prvName" property="prvname" jdbcType="VARCHAR" />
+    <result column="errorMsg" property="errormsg" jdbcType="VARCHAR" />
+    <result column="channelUserId" property="channeluserid" jdbcType="VARCHAR" />
+    <result column="taskState" property="taskstate" jdbcType="VARCHAR" />
+    <result column="taskStateDescription" property="taskstatedescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      carInsurePolicyId, order_id, pay_amount, promotion_rate, promotion_expenses, insureAreaCode, 
+      product_name, taskId, prvId, prvName, errorMsg, channelUserId, taskState, taskStateDescription
+    </if>
+    <if test="fields != null and fields != ''" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    carInsurePolicyId,order_id,pay_amount,promotion_rate,promotion_expenses,insureAreaCode,product_name,taskId,prvId,prvName,errorMsg,channelUserId,taskState,taskStateDescription
+    from t_car_insure_policy
+    where carInsurePolicyId = #{carinsurepolicyid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_car_insure_policy
+    where carInsurePolicyId = #{carinsurepolicyid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hzcf.insurancesale.model.CarInsurePolicy" >
+    insert into t_car_insure_policy (carInsurePolicyId, order_id, pay_amount, 
+      promotion_rate, promotion_expenses, insureAreaCode, 
+      product_name, taskId, prvId, 
+      prvName, errorMsg, channelUserId, 
+      taskState, taskStateDescription)
+    values (#{carinsurepolicyid,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{payAmount,jdbcType=DECIMAL}, 
+      #{promotionRate,jdbcType=DECIMAL}, #{promotionExpenses,jdbcType=DECIMAL}, #{insureareacode,jdbcType=VARCHAR}, 
+      #{productName,jdbcType=VARCHAR}, #{taskid,jdbcType=BIGINT}, #{prvid,jdbcType=VARCHAR}, 
+      #{prvname,jdbcType=VARCHAR}, #{errormsg,jdbcType=VARCHAR}, #{channeluserid,jdbcType=VARCHAR}, 
+      #{taskstate,jdbcType=VARCHAR}, #{taskstatedescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzcf.insurancesale.model.CarInsurePolicy" >
+    insert into t_car_insure_policy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="carinsurepolicyid != null" >
+        carInsurePolicyId,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="payAmount != null" >
+        pay_amount,
+      </if>
+      <if test="promotionRate != null" >
+        promotion_rate,
+      </if>
+      <if test="promotionExpenses != null" >
+        promotion_expenses,
+      </if>
+      <if test="insureareacode != null" >
+        insureAreaCode,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="taskid != null" >
+        taskId,
+      </if>
+      <if test="prvid != null" >
+        prvId,
+      </if>
+      <if test="prvname != null" >
+        prvName,
+      </if>
+      <if test="errormsg != null" >
+        errorMsg,
+      </if>
+      <if test="channeluserid != null" >
+        channelUserId,
+      </if>
+      <if test="taskstate != null" >
+        taskState,
+      </if>
+      <if test="taskstatedescription != null" >
+        taskStateDescription,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="carinsurepolicyid != null" >
+        #{carinsurepolicyid,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="payAmount != null" >
+        #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="promotionRate != null" >
+        #{promotionRate,jdbcType=DECIMAL},
+      </if>
+      <if test="promotionExpenses != null" >
+        #{promotionExpenses,jdbcType=DECIMAL},
+      </if>
+      <if test="insureareacode != null" >
+        #{insureareacode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskid != null" >
+        #{taskid,jdbcType=BIGINT},
+      </if>
+      <if test="prvid != null" >
+        #{prvid,jdbcType=VARCHAR},
+      </if>
+      <if test="prvname != null" >
+        #{prvname,jdbcType=VARCHAR},
+      </if>
+      <if test="errormsg != null" >
+        #{errormsg,jdbcType=VARCHAR},
+      </if>
+      <if test="channeluserid != null" >
+        #{channeluserid,jdbcType=VARCHAR},
+      </if>
+      <if test="taskstate != null" >
+        #{taskstate,jdbcType=VARCHAR},
+      </if>
+      <if test="taskstatedescription != null" >
+        #{taskstatedescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzcf.insurancesale.model.CarInsurePolicy" >
+    update t_car_insure_policy
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="payAmount != null" >
+        pay_amount = #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="promotionRate != null" >
+        promotion_rate = #{promotionRate,jdbcType=DECIMAL},
+      </if>
+      <if test="promotionExpenses != null" >
+        promotion_expenses = #{promotionExpenses,jdbcType=DECIMAL},
+      </if>
+      <if test="insureareacode != null" >
+        insureAreaCode = #{insureareacode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskid != null" >
+        taskId = #{taskid,jdbcType=BIGINT},
+      </if>
+      <if test="prvid != null" >
+        prvId = #{prvid,jdbcType=VARCHAR},
+      </if>
+      <if test="prvname != null" >
+        prvName = #{prvname,jdbcType=VARCHAR},
+      </if>
+      <if test="errormsg != null" >
+        errorMsg = #{errormsg,jdbcType=VARCHAR},
+      </if>
+      <if test="channeluserid != null" >
+        channelUserId = #{channeluserid,jdbcType=VARCHAR},
+      </if>
+      <if test="taskstate != null" >
+        taskState = #{taskstate,jdbcType=VARCHAR},
+      </if>
+      <if test="taskstatedescription != null" >
+        taskStateDescription = #{taskstatedescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where carInsurePolicyId = #{carinsurepolicyid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzcf.insurancesale.model.CarInsurePolicy" >
+    update t_car_insure_policy
+    set order_id = #{orderId,jdbcType=BIGINT},
+      pay_amount = #{payAmount,jdbcType=DECIMAL},
+      promotion_rate = #{promotionRate,jdbcType=DECIMAL},
+      promotion_expenses = #{promotionExpenses,jdbcType=DECIMAL},
+      insureAreaCode = #{insureareacode,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      taskId = #{taskid,jdbcType=BIGINT},
+      prvId = #{prvid,jdbcType=VARCHAR},
+      prvName = #{prvname,jdbcType=VARCHAR},
+      errorMsg = #{errormsg,jdbcType=VARCHAR},
+      channelUserId = #{channeluserid,jdbcType=VARCHAR},
+      taskState = #{taskstate,jdbcType=VARCHAR},
+      taskStateDescription = #{taskstatedescription,jdbcType=VARCHAR}
+    where carInsurePolicyId = #{carinsurepolicyid,jdbcType=BIGINT}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.hzcf.insurancesale.model.CarInsurePolicy" >
+     select * from t_car_insure_policy
+  </select>
+</mapper>
